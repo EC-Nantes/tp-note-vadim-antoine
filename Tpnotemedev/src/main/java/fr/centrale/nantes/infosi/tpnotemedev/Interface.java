@@ -10,7 +10,7 @@ package fr.centrale.nantes.infosi.tpnotemedev;
  */
 
 import java.util.Scanner;
-
+import fr.centrale.nantes.infosi.tpnotemedev.JeuPendu;
 /**
  *
  * @author agach
@@ -60,4 +60,63 @@ public class Interface {
         return mot;
     }
     
+    public void dessin(int erreur, int max){
+        if(max-erreur==7){
+            System.out.println(" +---+");
+            System.out.println(" |   |");
+            System.out.println("     |");
+            System.out.println("     |");
+            System.out.println("     |");
+            System.out.println("     |");
+            System.out.println("======");
+        }else if(max-erreur==1){
+            System.out.println(" +---+");
+            System.out.println(" |   |");
+            System.out.println(" 0   |");
+            System.out.println("/||  |");
+            System.out.println(" |   |");
+            System.out.println("/    |");
+            System.out.println("======");
+        }else if(max-erreur==2){
+            System.out.println(" +---+");
+            System.out.println(" |   |");
+            System.out.println(" 0   |");
+            System.out.println("/||  |");
+            System.out.println(" |   |");
+            System.out.println("     |");
+            System.out.println("======");
+        }else if (max-erreur==3){
+            System.out.println(" +---+");
+            System.out.println(" |   |");
+            System.out.println(" 0   |");
+            System.out.println("/||  |");
+            System.out.println("     |");
+            System.out.println("     |");
+            System.out.println("======");
+        }else if (max-erreur==4){
+            System.out.println(" +---+");
+            System.out.println(" |   |");
+            System.out.println(" 0   |");
+            System.out.println("/|   |");
+            System.out.println("     |");
+            System.out.println("     |");
+            System.out.println("======");
+        }else if (max-erreur==5){
+            System.out.println(" +---+");
+            System.out.println(" |   |");
+            System.out.println(" 0   |");
+            System.out.println("/    |");
+            System.out.println("     |");
+            System.out.println("     |");
+            System.out.println("======");
+        }else if (max-erreur==6){
+            System.out.println(" +---+");
+            System.out.println(" |   |");
+            System.out.println(" 0   |");
+            System.out.println("     |");
+            System.out.println("     |");
+            System.out.println("     |");
+            System.out.println("======");
+        }
+    }
 }
