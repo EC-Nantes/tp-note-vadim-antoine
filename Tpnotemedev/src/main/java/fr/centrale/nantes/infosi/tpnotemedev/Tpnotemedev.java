@@ -29,13 +29,12 @@ public class Tpnotemedev {
             try {
                 if (choix == 1) {
                     ChargementDictionnaire c = new ChargementDictionnaire();
-                    mot = c.chargement(); // [cite: 41, 80]
+                    mot = c.chargement(); 
                 } else {
-                    mot = ui.demanderMot(); // [cite: 42]
+                    mot = ui.demanderMot(); 
                     for(int i=0; i<50; i++) System.out.println();
                 }
             } catch (IOException e) {
-                // Affiche l'erreur réelle pour débugger
                 ui.afficheErreur("Erreur dictionnaire : " + e.getMessage()); 
                 return;
             }
