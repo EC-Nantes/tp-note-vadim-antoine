@@ -4,6 +4,7 @@
 
 package fr.centrale.nantes.infosi.tpnotemedev;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,30 +19,25 @@ public class Tpnotemedev {
     public static void main(String[] args) {
         Interface ui = new Interface();
         Scanner sc = new Scanner(System.in);
-        String mot = "";
+        String mot;
 
         System.out.println("1. Mode 1 Joueur");
         System.out.println("2. Mode 2 Joueurs");
         System.out.print("Choix : ");
         int choix = sc.nextInt();
         sc.nextLine();
-        if (choix == 1) {
-                Random r = new Random();
-                int a = r.nextInt(50);
-                List<String> mots = new ArrayList<>(Arrays.asList("ABEILLE", "HORIZON", "JONGLEUR", "QUARTZ", "ZODIAQUE",
-                "BALLADE", "IGLOO", "KANGOUROU", "RIVIERE", "WAGON",
-                "CASCADE", "JARDIN", "LUMIERE", "SOLEIL", "XYLOPHONE",
-                "DAUPHIN", "KLAXON", "MONTAGNE", "TULIPE", "YAOURT",
-                "ECUREUIL", "LAMPE", "NUAGE", "UNIVERS", "ZEPHYR",
-                "FORET", "MIROIR", "OISEAU", "VALISE", "MYRTILLE",
-                "GUITARE", "NATURE", "PHARE", "VOYAGE", "CACTUS",
-                "HARPE", "ORANGE", "QUALITE", "ZENITUDE", "FRAMBOISE",
-                "ILE", "POMME", "RENARD", "BONHEUR", "PAPILLON",
-                "JOURNAL", "QUILLE", "SOURIRE", "ETOILE", "PLANETE"));
-                mot = mots.get(a);
-            } else {
-                mot = ui.demanderMot();
-                for(int i=0; i<50; i++) System.out.println();
+            try {
+                if (choix == 1) {
+                    ChargementDictionnaire c = new ChargementDictionnaire();
+                    mot = c.chargement(); // [cite: 41, 80]
+                } else {
+                    mot = ui.demanderMot(); // [cite: 42]
+                    for(int i=0; i<50; i++) System.out.println();
+                }
+            } catch (IOException e) {
+                // Affiche l'erreur réelle pour débugger
+                ui.afficheErreur("Erreur dictionnaire : " + e.getMessage()); 
+                return;
             }
         JeuPendu game = new JeuPendu(mot, 7);
 
