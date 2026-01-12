@@ -34,7 +34,7 @@ public class JeuPendu {
     }
 
     public Set<Character> getLettres() {
-        return lettres;
+        return new HashSet<>(lettres);
     }
 
     public int getMax() {
@@ -96,5 +96,15 @@ public class JeuPendu {
             }
         }
         return sb.toString();
+    }
+    public boolean partieGagne() {
+        for (char c : motSecret.toCharArray()) {
+            if (!lettres.contains(c)) return false;
+        }
+        return true;
+    }
+
+    public boolean partiePerdu() {
+        return nbErreur >= max; 
     }
 }
