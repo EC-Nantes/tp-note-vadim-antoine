@@ -28,6 +28,40 @@ public class JeuPendu {
         this.lettres = new HashSet<>();
         this.nbErreur = 0;
     }
+
+    public String getMotSecret() {
+        return motSecret;
+    }
+
+    public Set<Character> getLettres() {
+        return lettres;
+    }
+
+    public int getMax() {
+        return max;
+    }
+
+    public int getNbErreur() {
+        return nbErreur;
+    }
+
+    public void setMotSecret(String motSecret) {
+        this.motSecret = motSecret;
+    }
+
+    public void setLettres(Set<Character> lettres) {
+        this.lettres = lettres;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
+    }
+
+    public void setNbErreur(int nbErreur) {
+        this.nbErreur = nbErreur;
+    }
+    
+    
     
     /**
      *La fonction retourne un booléen : True si la lettre appartient au mot cherché, False sinon.
@@ -50,5 +84,17 @@ public class JeuPendu {
             nbErreur++; 
         }
         return t;
+    }
+    
+    public String motMasque() {
+        StringBuilder sb = new StringBuilder();
+        for (char c : motSecret.toCharArray()) {
+            if (lettres.contains(c)) {
+                sb.append(c);
+            } else {
+                sb.append("_");
+            }
+        }
+        return sb.toString();
     }
 }
