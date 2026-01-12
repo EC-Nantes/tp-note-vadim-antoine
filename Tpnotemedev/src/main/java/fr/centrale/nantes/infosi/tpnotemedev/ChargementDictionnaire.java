@@ -21,22 +21,21 @@ public class ChargementDictionnaire {
             }
         }
         if (is == null) {
-            throw new IOException("Fichier '" + fileName + "' introuvable. "
-                + "Vérifiez qu'il est dans src/main/resources ET faites 'Clean and Build' dans NetBeans.");
+            throw new IOException("Fichier '" + fileName + "' introuvable. ");
         }
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"))) {
             List<String> words = reader.lines()
                 .map(String::trim)
                 .filter(w -> !w.isEmpty())
-                .filter(w -> w.matches("[a-zA-Z]+")) // Uniquement lettres 
+                .filter(w -> w.matches("[a-zA-Z]+"))  
                 .collect(Collectors.toList());
 
             if (words.isEmpty()) {
                 throw new IOException("Le dictionnaire est vide ou ne contient aucun mot valide.");
             }
 
-            return words.get(new Random().nextInt(words.size())).toUpperCase(); // [cite: 82]
+            return words.get(new Random().nextInt(words.size())).toUpperCase(); 
         }
     }
 }
