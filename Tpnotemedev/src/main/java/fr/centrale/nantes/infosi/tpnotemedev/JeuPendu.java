@@ -29,34 +29,66 @@ public class JeuPendu {
         this.nbErreur = 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMotSecret() {
         return motSecret;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Character> getLettres() {
         return new HashSet<>(lettres);
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMax() {
         return max;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getNbErreur() {
         return nbErreur;
     }
 
+    /**
+     *
+     * @param motSecret
+     */
     public void setMotSecret(String motSecret) {
         this.motSecret = motSecret;
     }
 
+    /**
+     *
+     * @param lettres
+     */
     public void setLettres(Set<Character> lettres) {
         this.lettres = lettres;
     }
 
+    /**
+     *
+     * @param max
+     */
     public void setMax(int max) {
         this.max = max;
     }
 
+    /**
+     *
+     * @param nbErreur
+     */
     public void setNbErreur(int nbErreur) {
         this.nbErreur = nbErreur;
     }
@@ -86,6 +118,10 @@ public class JeuPendu {
         return t;
     }
     
+    /**
+     *Affiche le mot avec des _ lorsque les lettres ne sont pas trouvées.
+     * @return
+     */
     public String motMasque() {
         StringBuilder sb = new StringBuilder();
         for (char c : motSecret.toCharArray()) {
@@ -97,6 +133,11 @@ public class JeuPendu {
         }
         return sb.toString();
     }
+
+    /**
+     *Renvoie True si la partie est gagnée.
+     * @return Booléen
+     */
     public boolean partieGagne() {
         for (char c : motSecret.toCharArray()) {
             if (!lettres.contains(c)) return false;
@@ -104,6 +145,10 @@ public class JeuPendu {
         return true;
     }
 
+    /**
+     *Renvoie True si la partie est perdue.
+     * @return Booléen
+     */
     public boolean partiePerdu() {
         return nbErreur >= max; 
     }
