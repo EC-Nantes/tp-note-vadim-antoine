@@ -10,7 +10,8 @@ package fr.centrale.nantes.infosi.tpnotemedev;
  */
 
 import java.util.Scanner;
-import fr.centrale.nantes.infosi.tpnotemedev.JeuPendu;
+import java.util.stream.Collectors;
+
 /**
  *
  * @author agach
@@ -32,8 +33,12 @@ public class Interface {
     public void afficheEtatDeJeu(JeuPendu pendu){
         System.out.println("Etat actuel du jeu");
         System.out.println("Mot :" +"");
-        System.out.println("Nombre d'erreur :" pendu.getNbErreur+" sur :"+pendu.getMax+" erreur autorisée");
+        System.out.println("Nombre d'erreur :"+pendu.getNbErreur()+" sur :"+pendu.getMax()+" erreur autorisée");
+        System.out.println(" ");
+        dessin(pendu.getNbErreur(),pendu.getMax());
         
+        String lettre= pendu.getLettres().stream().map(String::valueOf).collect(Collectors.joining(" ,"));
+        System.out.println("lettre essayée :"+lettre);
     }
     
     /**
@@ -60,6 +65,14 @@ public class Interface {
         return mot;
     }
     
+    public void affichageFinJeu(JeuPendu pendu){
+        if(pendu.partieGagne){
+            System.out.println("Vous avez trouvé le mot caché qui était"+pendu.getMotSecret());
+        }else{
+            System.out.println("Vous avez été pendu");
+            dessin(pendu.getMax(),pendu.getMax());
+        }
+    }
     public void dessin(int erreur, int max){
         if(max-erreur==7){
             System.out.println(" +---+");
@@ -120,3 +133,4 @@ public class Interface {
         }
     }
 }
+    
