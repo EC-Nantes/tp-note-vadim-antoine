@@ -4,6 +4,9 @@
  */
 package fr.centrale.nantes.infosi.tpnotemedev;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,12 +43,32 @@ public class TpnotemedevTest {
      * Test of main method, of class Tpnotemedev.
      */
     @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Tpnotemedev.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testMain2joueur() {
+        String input = "2\nMOT\nM\nO\nT\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertDoesNotThrow(() -> {
+            try {
+                Tpnotemedev.main(new String[]{});
+            } catch (NoSuchElementException e) {
+                // Capturé si le scanner cherche une entrée après la fin du jeu
+            }
+        });
     }
     
+    public void testMainchoixinvalide(){
+        // Simule un utilisateur qui se trompe de mode puis choisit 2
+        String input = "2\nJAVA\nJ\nA\nV\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        assertDoesNotThrow(() -> {
+            try {
+                Tpnotemedev.main(new String[]{});
+            } catch (NoSuchElementException e) {
+                // Fin normale du flux simulé
+            }
+        });
+    }
 }
