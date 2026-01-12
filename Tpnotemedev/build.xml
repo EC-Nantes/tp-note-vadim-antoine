@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project name="Tp_note_medev" default="compile" basedir=".">
     <property name="src.main" value="src/main/java"/>
     <property name="src.test" value="src/test/java"/>
@@ -7,59 +8,70 @@
     <property name="dist.dir" value="dist"/>
     <property name="lib.dir" value="lib"/>
     <property name="javadoc.dir" value="${build.dir}/javadoc"/>
+
     <target name="clean">
-<       delete dir="${build.dir}"/>
+        <delete dir="${build.dir}"/>
         <delete dir="${dist.dir}"/>
-    </target>   
+    </target>
+
     <target name="init">
         <mkdir dir="${classes.main}"/>
         <mkdir dir="${classes.test}"/>
         <mkdir dir="${dist.dir}"/>
         <mkdir dir="${build.dir}/test-report"/>
-    </target>   
+    </target>
+
     <path id="main.classpath">
-        <fileset dir="${lib.dir}">
+        <fileset dir="${lib.dir}" erroronmissingdir="false">
             <include name="*.jar"/>
         </fileset>
     </path>
+
     <path id="test.classpath">
         <pathelement path="${classes.main}"/>
         <pathelement path="${classes.test}"/>
         <path refid="main.classpath"/>
     </path>
+
     <target name="compile.main" depends="init">
         <javac srcdir="${src.main}" destdir="${classes.main}" includeantruntime="false" source="1.8" target="1.8">
             <classpath refid="main.classpath"/>
         </javac>
     </target>
+
     <target name="compile.test" depends="compile.main">
         <javac srcdir="${src.test}" destdir="${classes.test}" includeantruntime="false" source="1.8" target="1.8">
             <classpath refid="test.classpath"/>
         </javac>
     </target>
+
     <target name="compile" depends="compile.main,compile.test"/>
+
     <target name="test" depends="compile">
         <junitlauncher haltOnFailure="true" printSummary="true">
             <classpath refid="test.classpath"/>
             <testclasses outputdir="${build.dir}/test-report">
                 <fileset dir="${classes.test}">
-                    <include name="**/*Tests.class"/>
+                    <include name="**/*Test.class"/>
                 </fileset>
                 <listener type="legacy-plain" sendSysOut="true"/>
                 <listener type="legacy-xml" sendSysOut="true" sendSysErr="true"/>
             </testclasses>
         </junitlauncher>
     </target>
+
     <target name="jar" depends="compile.main">
-        <jar destfile="${dist.dir}/Tp_note_medev.jar" basedir="${classes.main}">  
+        <jar destfile="${dist.dir}/Tp_note_medev.jar" basedir="${classes.main}">
             <manifest>
                 <attribute name="Main-Class" value="fr.centrale.nantes.infosi.tpnotemedev.Tpnotemedev"/>
             </manifest>
         </jar>
     </target>
+
     <target name="run" depends="jar">
-        <java jar="${dist.dir}/tp_note_medev.jar" fork="true"/>
+        <java jar="${dist.dir}/Tp_note_medev.jar" fork="true"/>
     </target>
+
     <target name="javadoc" depends="compile.main">
         <mkdir dir="${javadoc.dir}"/>
         <javadoc destdir="${javadoc.dir}" sourcepath="${src.main}" packagenames="**" author="true" version="true" use="true" encoding="UTF-8" charset="UTF-8" docencoding="UTF-8" windowtitle="Javadoc - Tp note medev">
