@@ -32,7 +32,7 @@ public class Interface {
      */
     public void afficheEtatDeJeu(JeuPendu pendu){
         System.out.println("Etat actuel du jeu");
-        System.out.println("Mot :" +"");
+        System.out.println("Mot :" +pendu.motMasque());
         System.out.println("Nombre d'erreur :"+pendu.getNbErreur()+" sur :"+pendu.getMax()+" erreur autorisée");
         System.out.println(" ");
         dessin(pendu.getNbErreur(),pendu.getMax());
@@ -70,9 +70,9 @@ public class Interface {
      */
     public void afficheFinDeJeu(JeuPendu pendu){
         if(pendu.partieGagne()){
-            System.out.println("Vous avez trouvé le mot caché qui était"+pendu.getMotSecret());
+            System.out.println("Vous avez trouve le mot caché qui etait"+pendu.getMotSecret());
         }else{
-            System.out.println("Vous avez été pendu");
+            System.out.println("Vous avez ete pendu");
             dessin(pendu.getMax(),pendu.getMax());
         }
     }

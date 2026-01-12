@@ -49,7 +49,7 @@ public class Tpnotemedev {
             ui.afficheEtatDeJeu(game);
             try {
                 char letter = ui.recupererLettre();
-                game.appartient(letter); // Mise à jour de l'état [cite: 58]
+                game.appartient(letter); 
             } catch (IllegalArgumentException e) {
                 ui.afficheErreur(e.getMessage());
             }
