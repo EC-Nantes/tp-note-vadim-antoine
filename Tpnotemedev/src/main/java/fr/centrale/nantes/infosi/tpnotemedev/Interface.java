@@ -61,18 +61,30 @@ public class Interface {
      */
     public String demanderMot(){
         System.out.println("Joueur 1 entrez votre mot secret :");
-        String mot=scan.nextLine();
-        return mot;
+        return scan.nextLine();
     }
     
-    public void affichageFinJeu(JeuPendu pendu){
-        if(pendu.partieGagne){
+    /**
+     *Methode qui affiche un message de victoire ou défaite à la fin du jeu
+     * @param pendu
+     */
+    public void afficheFinDeJeu(JeuPendu pendu){
+        if(pendu.partieGagne()){
             System.out.println("Vous avez trouvé le mot caché qui était"+pendu.getMotSecret());
         }else{
             System.out.println("Vous avez été pendu");
             dessin(pendu.getMax(),pendu.getMax());
         }
     }
+    
+    public void afficheErreur(String message){
+        System.out.println("Erreur :"+message);
+    }
+    /**
+     *methode qui affiche le dessin du pendu en fonction de l'avancée du jeu
+     * @param erreur
+     * @param max
+     */
     public void dessin(int erreur, int max){
         if(max-erreur==7){
             System.out.println(" +---+");
