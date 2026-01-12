@@ -23,9 +23,9 @@ public class Tpnotemedev {
         System.out.println("1. Mode 1 Joueur");
         System.out.println("2. Mode 2 Joueurs");
         System.out.print("Choix : ");
-        int choice = sc.nextInt();
+        int choix = sc.nextInt();
         sc.nextLine();
-        if (choice == 1) {
+        if (choix == 1) {
                 Random r = new Random();
                 int a = r.nextInt(50);
                 List<String> mots = new ArrayList<>(Arrays.asList("ABEILLE", "HORIZON", "JONGLEUR", "QUARTZ", "ZODIAQUE",

@@ -128,7 +128,8 @@ public class JeuPendu {
             if (lettres.contains(c)) {
                 sb.append(c);
             } else {
-                sb.append("_");
+                sb.append("_ ");
+                
             }
         }
         return sb.toString();

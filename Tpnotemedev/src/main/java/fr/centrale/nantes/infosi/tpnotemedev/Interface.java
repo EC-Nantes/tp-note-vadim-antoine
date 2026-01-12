@@ -70,7 +70,7 @@ public class Interface {
      */
     public void afficheFinDeJeu(JeuPendu pendu){
         if(pendu.partieGagne()){
-            System.out.println("Vous avez trouve le mot caché qui etait"+pendu.getMotSecret());
+            System.out.println("Vous avez trouve le mot caché qui etait "+pendu.getMotSecret());
         }else{
             System.out.println("Vous avez ete pendu");
             dessin(pendu.getMax(),pendu.getMax());
