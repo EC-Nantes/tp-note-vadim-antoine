@@ -29,34 +29,66 @@ public class JeuPendu {
         this.nbErreur = 0;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMotSecret() {
         return motSecret;
     }
 
+    /**
+     *
+     * @return
+     */
     public Set<Character> getLettres() {
         return lettres;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMax() {
         return max;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getNbErreur() {
         return nbErreur;
     }
 
+    /**
+     *
+     * @param motSecret
+     */
     public void setMotSecret(String motSecret) {
         this.motSecret = motSecret;
     }
 
+    /**
+     *
+     * @param lettres
+     */
     public void setLettres(Set<Character> lettres) {
         this.lettres = lettres;
     }
 
+    /**
+     *
+     * @param max
+     */
     public void setMax(int max) {
         this.max = max;
     }
 
+    /**
+     *
+     * @param nbErreur
+     */
     public void setNbErreur(int nbErreur) {
         this.nbErreur = nbErreur;
     }
@@ -86,15 +118,38 @@ public class JeuPendu {
         return t;
     }
     
+    /**
+     *La méthode renvoie le mot secret avec les lettres trouvées et _ si elle ne l'est pas encore
+     * @return Un String
+     */
     public String motMasque() {
         StringBuilder sb = new StringBuilder();
         for (char c : motSecret.toCharArray()) {
             if (lettres.contains(c)) {
                 sb.append(c);
             } else {
-                sb.append("_");
+                sb.append("_\\");
             }
         }
         return sb.toString();
+    }
+    
+    /**
+     *La fonction renvoie True si la partie est gagné (False sinon)
+     * @return Booléen
+     */
+    public boolean partieGagne() {
+        for (char c : motSecret.toCharArray()) {
+            if (!lettres.contains(c)) return false;
+        }
+        return true; 
+    }
+
+    /**
+     *La fonction renvoie True si la partie est perdu (False sinon)
+     * @return Booléen
+     */
+    public boolean partiePerdu() {
+        return nbErreur >= max; 
     }
 }
