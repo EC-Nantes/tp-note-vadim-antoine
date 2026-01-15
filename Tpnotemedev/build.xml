@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Tp_note_medev" default="compile" basedir=".">
+    <property name="src.main" value="src/main/java"/>
+    <property name="src.test" value="src/test/java"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.main" value="${build.dir}/main"/>
+    <property name="classes.test" value="${build.dir}/test"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="lib.dir" value="lib"/>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="init">
+        <mkdir dir="${classes.main}"/>
+        <mkdir dir="${classes.test}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile.main" depends="init">
+        <javac srcdir="${src.main}" destdir="${classes.main}" includeantruntime="false" source="1.8" target="1.8"/>
+        
+        <copy todir="${classes.main}">
+            <fileset dir="src/main/resources" includes="dico.txt" erroronmissingdir="false"/>
+        </copy>
+    </target>
+
+    <target name="compile.test" depends="compile.main">
+        <javac srcdir="${src.test}" destdir="${classes.test}" includeantruntime="false" source="1.8" target="1.8">
+            <classpath>
+                <pathelement path="${classes.main}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compile" depends="compile.main,compile.test"/>
+
+    <target name="jar" depends="compile">
+        <jar destfile="${dist.dir}/Tp_note_medev.jar" basedir="${classes.main}">
+            <manifest>
+                <attribute name="Main-Class" value="fr.centrale.nantes.infosi.tpnotemedev.Tpnotemedev"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+        <java jar="${dist.dir}/Tp_note_medev.jar" fork="true"/>
+    </target>
+</project>
